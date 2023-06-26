@@ -1,0 +1,106 @@
+import sys
+
+# Create an empty list and an empty tuple
+productlist1 = []
+producttuple1tuple1 = ()
+
+# Create productlist1 and producttuple1
+productlist1 = [983, 984, 986]
+producttuple1 = (983, 984, 986)
+
+# Print the product lists and their sizes
+print(productlist1, " ", sys.getsizeof(productlist1))
+print(producttuple1, " ", sys.getsizeof(producttuple1))
+
+# Check if strlist is sorted
+strlist = ['bread', 'cheese', 'lettuce']
+if strlist == sorted(strlist):
+    print("sorted")
+else:
+    print("NOT sorted")
+
+# Sort numlist and print its elements
+numlist = [1, 2, 3]
+numlist.sort()
+for i in range(3):
+    print(numlist[i])
+
+# Calculate the sum of numlist
+total = sum(numlist)
+print(total)
+
+# Directly access the 2nd element of numlist and strlist
+print("directly access 2nd element")
+print(numlist[1])
+print(strlist[1])
+
+# Open a file named 'inh2.txt' in write mode and write a string to it
+outfile = open('inh2.txt', 'w')
+outfile.write("Inheritance Example2")
+outfile.close()
+
+# Define a class named 'purchase'
+class purchase:
+    def __init__(self, cost):
+        self.cst = cost
+
+# Define a class named 'onetimePurchase' that inherits from 'purchase'
+class onetimePurchase(purchase):
+    def __init__(self, cost, weeks):
+        super().__init__(cost)
+        self.weeks = weeks
+
+    def singlepurchaseprice(self):
+        Totalcost = float(self.cst)
+        weeks = float(self.weeks)
+        Totalcost = Totalcost * weeks
+        print('The monthly subscription cost for your shopping list for weekly deliveries and 5 percent discount is %5f' % costpermonth)
+
+# Define a class named 'monthlysubscriptionfee' that inherits from 'purchase'
+class monthlysubscriptionfee(purchase):
+    def __init__(self, cost, weeks, fourweeksdiscount):
+        super().__init__(cost)
+        self.weeks = weeks
+        self.fourweeksdiscount = fourweeksdiscount
+        self.lengthofsubscription = float(self.weeks)
+        self.fourweeksdiscount = float(self.fourweeksdiscount)
+
+    def calcCost(self):
+        costpermonth = self.cst * self.fourweeksdiscount * self.weeks
+        print('The monthly subscription cost for your shopping list for weekly deliveries and 5 percent discount is %5f' % costpermonth)
+
+# Initialize the retry variable to True
+retry = True
+
+# Start a loop until retry is set to False
+while retry:
+    print("#1. One Time Purchase Cost")
+    print("#2. Cost per month with subscription")
+    print("#3. End program")
+
+    menu = input("Please choose a menu item (1, 2, 3): ")
+
+    if menu == "1":
+        Totalcost = input("Enter cost amount: ")
+        weeks = input("Please enter total amount of weeks you want to calculate price for: ")
+        monsub = onetimePurchase(Totalcost, weeks)
+        monsub.singlepurchaseprice()
+
+    elif menu == "2":
+        Totalcost = input("Enter cost amount: ")
+        weeks = input("Please enter amount of weeks you want to calculate cost for: ")
+        fourweeksdiscount = input("Please enter the four weeks discount: ")
+        Totalcost = float(Totalcost)
+        weeks = float(weeks)
+        fourweeksdiscount = float(fourweeksdiscount)
+        costpermonth = Totalcost * fourweeksdiscount * weeks
+        subscriptionpurchasedetails = monthlysubscriptionfee(Totalcost, weeks, fourweeksdiscount)
+        subscriptionpurchasedetails.calcCost()
+
+    elif menu == "3":
+        # If menu is 3, set retry to False and end the program
+        retry = False
+        print("Thanks for pursuing your education with us!")
+    else:
+        # If an invalid menu option is chosen, display an error message
+        print("Invalid selection, please try 1, 2, 3")
